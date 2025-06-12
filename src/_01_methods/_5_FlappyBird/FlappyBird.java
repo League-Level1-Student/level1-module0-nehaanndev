@@ -18,7 +18,10 @@ public class FlappyBird extends PApplet {
 
     @Override
     public void draw() {
-        
+    	background(25, 50, 75);f
+    	fill(red, green, blue);
+    	stroke(red, green, blue);
+    	ellipse(x, y, width, height);
     }
 
     static public void main(String[] args) {
