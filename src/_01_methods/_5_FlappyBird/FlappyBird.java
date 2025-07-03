@@ -20,26 +20,35 @@ public class FlappyBird extends PApplet {
 
     @Override
     public void setup() {
-        
+    	teleportPipes();
+    }
+    
+    
+    public void teleportPipes() {
+    	background(25, 50, 75);
+    	fill(10, 200, 50);
+    	rect(X, 500, width, height);
+    	if (X > 800) {
+    		X = 0;
+    	}
+    	X += 10;
     }
 
     @Override
     public void draw() {
-    	background(25, 50, 75);
-    	fill(10, 200, 50);
-    	rect(X, 500, width, height);
+    	teleportPipes();
     	fill(250, 175, 50);
     	stroke(0, 0, 0);
     	ellipse(x, y, 50, 50);
     	x += 10;
-    	X += 10;
-    	y -= birdYVelocity;
-    	birdYVelocity -= gravity;
+    	y += birdYVelocity;
+    	birdYVelocity += gravity;
+    	
 
     }
     @Override
     public void mousePressed() {
-    	birdYVelocity = 0;
+    	y = 300;
     }
 
     static public void main(String[] args) {
