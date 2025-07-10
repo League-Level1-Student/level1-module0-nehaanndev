@@ -5,11 +5,20 @@ import processing.core.PApplet;
 public class FlappyBird extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
-    int x = 400;
-    int y = 300;
+    int birdX = 400;
+    int birdY = 300;
     int gravity = 1;
-    int birdYVelocity = 0;
-    int X = 0;
+    int birdYVelocity = -10;
+    int pipeX = 800;
+    int upperPipeY = 0;
+    int lowerPipeHeight = 600;
+    int upperPipeHeight = (int) random(100, 400);
+    int pipeGap = 250;
+    int lowerpipeY = upperPipeHeight + pipeGap;
+    int pipeWidth = 150;
+    int score = 0;
+    
+
 
 
 
@@ -25,13 +34,17 @@ public class FlappyBird extends PApplet {
     
     
     public void teleportPipes() {
-    	background(25, 50, 75);
-    	fill(10, 200, 50);
-    	rect(X, 500, width, height);
-    	if (X > 800) {
-    		X = 0;
+    	background(100, 225, 250);
+    	fill(10, 250, 50);
+    	rect(pipeX, upperPipeY, pipeWidth, upperPipeHeight);
+    	rect(pipeX, lowerpipeY, pipeWidth, lowerPipeHeight);
+    	if (pipeX < -20) {
+    		pipeX = 800;
+    	    upperPipeHeight = (int) random(100, 400);
+    	    lowerpipeY = upperPipeHeight + pipeGap;
+    		
     	}
-    	X += 10;
+    	pipeX -= 10;
     }
 
     @Override
@@ -39,19 +52,42 @@ public class FlappyBird extends PApplet {
     	teleportPipes();
     	fill(250, 175, 50);
     	stroke(0, 0, 0);
-    	ellipse(x, y, 50, 50);
-    	x += 10;
-    	y += birdYVelocity;
+    	ellipse(birdX, birdY, 50, 50);
+    	birdY += birdYVelocity;
     	birdYVelocity += gravity;
+    
+    	if (intersectsPipes() == true) {
+    		fill(10,150,100);
+    		rect(0,0,800,600);
+    		fill (0,0,0);
+    		rect(100,100,600,400);
+    		fill (225,250,100);
+    	    textSize(150);
+    		text("GAME", 175, 250);
+    		text ("OVER", 175, 400);
+    		score = 0;
+    	}else {
+    	fill (0,0,0);
+    	textSize(25);
+    	score += 1;
+    	text("Score:" + score , 50, 50);
+    	}
     	
-
     }
     @Override
     public void mousePressed() {
-    	y = 300;
+    	birdYVelocity = -10;
     }
 
     static public void main(String[] args) {
         PApplet.main(FlappyBird.class.getName());
     }
+    boolean intersectsPipes() { 
+        if (birdY > upperPipeY && birdX > pipeX && birdX < (pipeX+pipeWidth)){
+           return true; }
+       else if (birdY>lowerpipeY && birdX > pipeX && birdX < (pipeX+pipeWidth)) {
+           return true; }
+       else { return false; }
+}
+
 }
