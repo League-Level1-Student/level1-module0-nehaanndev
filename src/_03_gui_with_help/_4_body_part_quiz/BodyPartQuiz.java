@@ -42,7 +42,7 @@ public class BodyPartQuiz {
 
 		// 3. Change the size of the window so that you can only see part of the
 		// image.
-		window.setSize(500, 500);
+		window.setSize(100, 100);
 
 		showNextImage();
 
@@ -59,13 +59,38 @@ public class BodyPartQuiz {
 
 		// 5. Check their answer. If they guessed correctly:
 		// -- Tell them they are right and increase the score by 1
+		if (guess.equals("arnold")){
+			JOptionPane.showMessageDialog(null, "You're right!");
+			score += 1;
+		}else {
+			JOptionPane.showMessageDialog(null, "You're wrong. It was Arnold.");
+		}	showNextImage();
+		if (guess.equals("leonardo")){
+			JOptionPane.showMessageDialog(null, "You're right!");
+			score += 1;
+		}else {
+			JOptionPane.showMessageDialog(null, "You're wrong. It was Leonardo.");
+		}	showNextImage();
+		if (guess.equals("morgan")){
+			JOptionPane.showMessageDialog(null, "You're right!");
+			score += 1;
+		}else {
+			JOptionPane.showMessageDialog(null, "You're wrong. It was Morgan.");
+		}	showNextImage();
+		if (guess.equals("jack")){
+			JOptionPane.showMessageDialog(null, "You're right!");
+			score += 1;
+		}else {
+			JOptionPane.showMessageDialog(null, "You're wrong. It was Jack.");
+		}
+		JOptionPane.showMessageDialog(null, "Your current score is: "+ score);
+
 
 		// 6. Otherwise:
 		// -- Tell them they are wrong and who the person is
 
 		// 7. Use the showNextImage() method below to get the next image
-		showNextImage();
-
+	
 		// 8. .... repeat 4-7 for all your images.....
 
 		// 9. Show them their current score
