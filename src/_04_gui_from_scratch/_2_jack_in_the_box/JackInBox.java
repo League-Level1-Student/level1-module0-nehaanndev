@@ -22,7 +22,9 @@ public class JackInBox implements ActionListener {
 
 		JButton surpriseButton = new JButton();
 		surpriseButton.setText("Click Me for a Surprise!");
-
+		frame.add(surpriseButton);
+		frame.pack();
+		surpriseButton.addActionListener(this);
 	}
 
 	@Override
